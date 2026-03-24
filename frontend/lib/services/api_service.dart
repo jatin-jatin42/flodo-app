@@ -33,7 +33,7 @@ class ApiService {
     await _simulateDelay(); // Simulated 2-second delay per requirement
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/'),
+        Uri.parse(baseUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(task.toJson()),
       );
@@ -51,7 +51,7 @@ class ApiService {
     await _simulateDelay(); // Simulated 2-second delay per requirement
     try {
       final response = await http.put(
-        Uri.parse('$baseUrl/${task.id}'),
+        Uri.parse('$baseUrl${task.id}'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(task.toJson()),
       );
@@ -67,7 +67,7 @@ class ApiService {
 
   Future<void> deleteTask(String id) async {
     try {
-      final response = await http.delete(Uri.parse('$baseUrl/$id'));
+      final response = await http.delete(Uri.parse('$baseUrl$id'));
       if (response.statusCode != 200) {
         throw Exception('Failed to delete task');
       }
@@ -79,7 +79,7 @@ class ApiService {
   Future<void> reorderTask(String id, double newOrderIndex) async {
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/$id/reorder'),
+        Uri.parse('${baseUrl}$id/reorder'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'new_order_index': newOrderIndex}),
       );
