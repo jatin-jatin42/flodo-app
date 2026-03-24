@@ -1,0 +1,56 @@
+# OS-specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Python
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Flutter
+/frontend/build/
+/frontend/.dart_tool/
+/frontend/.flutter-plugins
+/frontend/.flutter-plugins-dependencies
+/frontend/.packages
+/frontend/.pub-cache/
+/frontend/.pub/
+/frontend/ios/Flutter/Generated.xcconfig
+/frontend/ios/Flutter/flutter_export_environment.sh
+/frontend/ios/ServiceDefinitions.json
+/frontend/android/key.properties
+/frontend/android/app/key.properties
+/frontend/android/app/local.properties
+/frontend/android/app/google-services.json
+/frontend/android/.gradle/
+/frontend/android/captures/
+/frontend/android/gradlew
+/frontend/android/gradlew.bat
+/frontend/android/local.properties
+/frontend/android/src/main/res/drawable/launch_background.xml
+/frontend/web/stack_trace_mapper.dart
+
+# Build artifacts
+*.log
+*.sql
+*.sqlite

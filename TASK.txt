@@ -1,0 +1,51 @@
+Flodo AI Take-Home Assignment: Task Management App
+Objective
+Build a functional, visually polished Task Management Flutter app. This assignment tests your ability to architect a solution, manage state, implement clean UI/UX, and write maintainable code.
+Time Expectation
+We respect your time. Please choose a track below and scope your work accordingly. We prefer a polished, complete core application over a buggy app with too many features.
+Core Requirements (Must-Have)
+Your application must include the following features to be considered complete. Please implement exactly what is listed below:
+Task Data Model: Every task must have exactly four fields:
+Title (Text string)
+Description (Text string)
+Due Date (Date format)
+Status (Dropdown/Enum: "To-Do", "In Progress", "Done")
+Blocked By (Optional: A dropdown to select one other existing task that must be completed before this one).
+Screens/UI:
+Main List View: Displays all created tasks. Rule: If Task B is "Blocked By" Task A, Task B's UI card should look visually distinct (e.g., greyed out) until Task A is marked "Done".
+Task Creation/Edit: A screen or modal to input and save the four required fields.
+Required Functionality:
+CRUD: Users must be able to Create, Read, Update, and Delete tasks.
+Drafts: If a user is typing a new task in the creation screen and accidentally minimizes the app or swipes back, their typed text should remain there when they open the creation screen again.
+Search & Filter: 
+A text input field on the main screen to search tasks by Title.
+A toggle or dropdown on the main screen to filter the list by Status.
+Technical Tracks (Choose ONE)
+Choose the track that best highlights your strengths as a builder. In both tracks, simulate a 2-second delay on all Task Creations and Updates. During this 2-second delay, the UI must not freeze, the user must see a clear loading state, and they must be prevented from tapping the "Save" button twice.
+Track A: The Full-Stack Builder (Expected time: 6-8 hours)
+Frontend: Flutter & Dart.
+Backend: Python (FastAPI, Flask, or Django).
+Database: SQLite or PostgreSQL.
+Requirement: Connect the Flutter app to your Python REST API.
+Track B: The Mobile Specialist (Expected time: 4-5 hours)
+Frontend: Flutter & Dart.
+Backend: None required. Use a local database (e.g., SQLite, Hive, Isar, or Shared Preferences) to persist data across app restarts.
+Requirement: Because you are skipping the backend, we expect a high bar for UI/UX. Pay strict attention to typography, color schemes, icon alignment, smooth transitions, and state management.
+Stretch Goals (Optional - Pick ONE)
+If you finish early and want to stand out, implement one of the following features. This is where you show us your high-agency problem-solving skills:
+Debounced Autocomplete Search: Upgrade the standard search bar. As the user types, the list should filter instantly, but the underlying logic or API call must be "debounced" (e.g., waiting 300 ms after the user stops typing). Additionally, highlight the matching text within the task titles in the UI results.
+Recurring Tasks Logic: Add a "Recurring" toggle (e.g., Daily or Weekly) to the task creation screen. When a recurring task is marked as "Done", the app should automatically generate a duplicate of that task with the Due Date pushed forward to the next cycle, while keeping the original task logged as completed.
+Persistent Drag-and-Drop: Allow users to drag and drop tasks on the main list to reorder their priority, ensuring this custom order is saved to the database and persists on app restart.
+AI Usage Guidelines
+We strongly encourage using AI tools (Claude, ChatGPT, Gemini, Cursor, Copilot) to accelerate your development. In your README, you can include:
+The prompts that gave you the most helpful code.
+If it happens, an example of a time the AI gave you bad code or hallucinated, and how you fixed it.
+Submission Guidelines
+Deadline: Submit within 7 days of receiving this link.
+Repository: Provide a link to a public Git repository (GitHub/GitLab).
+Commit History: Commits must be logical, atomic, and cleanly described.
+The 1-Minute Demo Video: Please record a brief video (max 60 to 90 seconds) and share a Google Drive link (Ensure you give view access to nilay@flodo.ai). Run your app, demonstrate the core CRUD functionality, show off your stretch goal (if any), and briefly explain one technical decision you are proud of. Narrate along with your recording.
+Documentation: Include a README.md with:
+Step-by-step setup instructions to run your code.
+Which Track (A or B) and which Stretch Goal (if any) you chose.
+Your AI Usage report.
