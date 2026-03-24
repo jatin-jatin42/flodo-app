@@ -31,7 +31,10 @@ class _TaskListScreenState extends ConsumerState<TaskListScreen> {
         title: const Text('Tasks', style: TextStyle(color: Colors.white)),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
-          _buildStatusFilter(),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: _buildStatusFilter(),
+          ),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60.0),
@@ -61,6 +64,7 @@ class _TaskListScreenState extends ConsumerState<TaskListScreen> {
             return const Center(child: Text("No tasks found."));
           }
           return ReorderableListView.builder(
+            buildDefaultDragHandles: false,
             itemCount: tasks.length,
             onReorder: (oldIndex, newIndex) {
               if (oldIndex < newIndex) {
@@ -84,7 +88,7 @@ class _TaskListScreenState extends ConsumerState<TaskListScreen> {
             },
             itemBuilder: (context, index) {
               final task = tasks[index];
-              return _buildTaskCard(task, tasks);
+              return _buildTaskCard(task, tasks, index);
             },
           );
         },
@@ -123,7 +127,7 @@ class _TaskListScreenState extends ConsumerState<TaskListScreen> {
     );
   }
 
-  Widget _buildTaskCard(TaskItem task, List<TaskItem> allTasks) {
+  Widget _buildTaskCard(TaskItem task, List<TaskItem> allTasks, int index) {
     // Check if blocked by evaluating dependencies
     bool isBlocked = false;
     if (task.blockedById != null) {
@@ -176,7 +180,17 @@ class _TaskListScreenState extends ConsumerState<TaskListScreen> {
             ),
           ),
           subtitle: Text(task.description, maxLines: 2, overflow: TextOverflow.ellipsis),
-          trailing: _TaskStatusBadge(status: task.status),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _TaskStatusBadge(status: task.status),
+              const SizedBox(width: 8),
+              ReorderableDragStartListener(
+                index: index,
+                child: const Icon(Icons.drag_handle, color: Colors.grey),
+              ),
+            ],
+          ),
         ),
       ),
     );
