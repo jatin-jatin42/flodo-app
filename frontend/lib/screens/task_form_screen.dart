@@ -25,6 +25,7 @@ class _TaskFormScreenState extends ConsumerState<TaskFormScreen> {
   String? _recurrenceInterval = 'Daily';
   
   bool _isLoading = false;
+  bool _submitted = false;
 
   @override
   void initState() {
@@ -72,7 +73,7 @@ class _TaskFormScreenState extends ConsumerState<TaskFormScreen> {
 
   @override
   void dispose() {
-    _saveDraft();
+    if (!_submitted) _saveDraft();
     _titleController.dispose();
     _descController.dispose();
     super.dispose();
@@ -100,8 +101,10 @@ class _TaskFormScreenState extends ConsumerState<TaskFormScreen> {
 
       if (widget.task == null) {
         await ref.read(taskNotifierProvider).createTask(taskItem);
+        _submitted = true;
         await _clearDraft();
       } else {
+        _submitted = true;
         await ref.read(taskNotifierProvider).updateTask(taskItem);
       }
 

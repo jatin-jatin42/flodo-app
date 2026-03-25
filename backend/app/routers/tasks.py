@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, asc
+from sqlalchemy import select, asc, update
 from typing import List
 from uuid import UUID
 from datetime import timedelta
@@ -105,6 +105,12 @@ async def delete_task(task_id: UUID, db: AsyncSession = Depends(get_db)):
     task = await db.get(Task, task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
+    
+    # Clear any references to this task before deleting (avoid FK violation)
+    await db.execute(
+        update(Task).where(Task.blocked_by_id == task_id).values(blocked_by_id=None)
+    )
+    
     await db.delete(task)
     await db.commit()
     return {"message": "Task deleted"}

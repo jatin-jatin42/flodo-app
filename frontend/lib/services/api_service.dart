@@ -1,10 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:io' show Platform;
 import '../models/task_model.dart';
 import 'dart:async';
 
 class ApiService {
-  final String baseUrl = 'http://localhost:8000/tasks/';
+  String get baseUrl {
+    if (!kIsWeb && Platform.isAndroid) {
+      return 'http://10.0.2.2:8000/tasks/'; 
+    }
+    return 'http://localhost:8000/tasks/';
+  }
 
   Future<void> _simulateDelay() async {
     await Future.delayed(const Duration(seconds: 2));
